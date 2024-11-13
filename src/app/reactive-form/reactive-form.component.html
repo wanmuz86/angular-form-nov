@@ -1,11 +1,26 @@
 <form [formGroup]="productForm" (ngSubmit)="createProduct()">
 <div>
     <label for="name">Name</label>
-    <input type="text" formControlName="name" required>
+    <input type="text" formControlName="name">
+    <span *ngIf="name.touched && name.hasError('required')">
+        Name is required
+    </span>
+    <span *ngIf="name.touched && name.hasError('minlength')">
+        Minimum 10 characters is needed
+    </span>
+    <span *ngIf="name.touched && name.hasError('maxlength')">
+        The allowed character length is 255 characters
+    </span>
 </div>
 <div>
     <label for="price">Price</label>
-    <input type="number" formControlName="price" required>
+    <input type="number" formControlName="price">
+    <span *ngIf="price.touched && price.hasError('required')">
+        Price is required
+    </span>
+    <span *ngIf="price.touched && price.hasError('min')">
+        Price should be greater than 1
+    </span>
 </div>
-<button type="submit">Add new Item</button>
+<button type="submit" [disabled]="!productForm.valid">Add new Item</button>
 </form>

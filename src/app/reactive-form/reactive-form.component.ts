@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PriceRangeValidator } from '../price-range.directive';
 
 @Component({
   selector: 'app-reactive-form',
@@ -13,11 +14,15 @@ export class ReactiveFormComponent {
 
   // Defining the form element and validation rules for the Form
 
+  minValue = 1
+  maxValue = 1000000
+
  productForm = new FormGroup({
   name: new FormControl('',{nonNullable:true, validators:[Validators.required, Validators.maxLength(255), Validators.minLength(10)]}),
-  price:  new FormControl(0, {nonNullable:true, validators:[Validators.min(1), Validators.required]})
+  price:  new FormControl(0, {nonNullable:true, validators:[PriceRangeValidator(this.minValue,this.maxValue), Validators.required]})
  });
 
+  
  // Getter form the value of the form 
  get name() { return this.productForm.controls.name }
  get price() { return this.productForm.controls.price }

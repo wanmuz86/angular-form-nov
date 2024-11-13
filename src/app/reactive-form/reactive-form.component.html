@@ -18,8 +18,8 @@
     <span *ngIf="price.touched && price.hasError('required')">
         Price is required
     </span>
-    <span *ngIf="price.touched && price.hasError('min')">
-        Price should be greater than 1
+    <span *ngIf="price.touched && price.hasError('outOfRange')">
+        Price should be between {{minValue}} and {{maxValue}}
     </span>
 </div>
 <button type="submit" [disabled]="!productForm.valid">Add new Item</button>

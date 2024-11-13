@@ -1,0 +1,8 @@
+<form (ngSubmit)="addProduct()">
+    <input type="text" placeholder="Product name" name="name" 
+    [(ngModel)]="product.name">
+    <!-- the name attribute is needed for ngModel to work -->
+    <input type="number" placeholder="Product Price" name="price"
+    [(ngModel)]="product.price">
+    <button type="submit">Add Item</button>
+</form>
